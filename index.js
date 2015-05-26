@@ -337,6 +337,7 @@ function parseImport(str, source) {
  * @param {String} name
  */
 function resolveFilename(name, root, paths, source) {
+  name = '_' + name;
   var dir = source && source.input && source.input.file ? path.dirname(path.resolve(root, source.input.file)) : root
 
   try {
@@ -344,7 +345,7 @@ function resolveFilename(name, root, paths, source) {
       basedir: dir,
       moduleDirectory: moduleDirectories.concat(paths),
       paths: paths,
-      extensions: [".css"],
+      extensions: [".scss"],
       packageFilter: function processPackage(pkg) {
         pkg.main = pkg.style || "index.css"
         return pkg
